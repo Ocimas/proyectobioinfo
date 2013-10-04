@@ -33,7 +33,7 @@ for i in Nfrag:
 
 #Creo el fichero de salida
 sal = open("Salida", "w")
-ordenfrag = []
+ordenfrag = dict()
 listapos = []
 #Recorro la lista de listas de fragmentos
 for i in range(len(fraglist)):
@@ -45,12 +45,19 @@ for i in range(len(fraglist)):
         linea = j.split()
         sal.write(str(linea) + "\n")
         if (sec + ":") in linea[1]:
-            pos = linea[1].split(:)
-            pos = pos[1].split(-)
-            ordenfrag.append(j)
-            listapos.append(pos)
+            pos = linea[1].split(":")
+            if (sec == pos[0]):
+                pos = pos[1].split("-")
+                ordenfrag[int(pos[0])] = i
+                listapos.append(int(pos[0]))
         
 sal.close()
 
-##### FALTA ORDENAR
+listapos.sort()
+
+f2 = open("Orden", "w")
+for i in listapos:
+    f2.write("L:" + str(ordenfrag[i]) +" " + str(i) + "\n")
+
+f2.close()
         
